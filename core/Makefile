@@ -1843,9 +1843,9 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 
 INTENSE_TARGET_PACKAGE := $(PRODUCT_OUT)/IntenseOS-$(INTENSE_VERSION).zip
 
-.PHONY: otapackage bacon
+.PHONY: otapackage intense
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
-bacon: otapackage
+intense: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(INTENSE_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(INTENSE_TARGET_PACKAGE) > $(INTENSE_TARGET_PACKAGE).md5sum
 	@echo -e ${CL_CYN}"Package Complete: $(INTENSE_TARGET_PACKAGE)"${CL_RST}
