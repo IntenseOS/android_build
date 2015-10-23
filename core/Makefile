@@ -1848,7 +1848,20 @@ otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 intense: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(INTENSE_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(INTENSE_TARGET_PACKAGE) > $(INTENSE_TARGET_PACKAGE).md5sum
-	@echo -e ${CL_CYN}"Package Complete: $(INTENSE_TARGET_PACKAGE)"${CL_RST}
+	@echo -e ${CL_MAG}""${CL_MAG}
+	@echo -e ""${CL_MAG}
+	@echo -e ${CL_MAG}" ██▓ ███▄    █ ▄▄▄█████▓▓█████  ███▄    █   ██████ ▓█████     ▒█████    ██████   "${CL_MAG}
+	@echo -e ${CL_MAG}" ▓██▒ ██ ▀█   █ ▓  ██▒ ▓▒▓█   ▀  ██ ▀█   █ ▒██    ▒ ▓█   ▀    ▒██▒  ██▒▒██    ▒  "${CL_MAG}
+	@echo -e ${CL_MAG}" ▒██▒▓██  ▀█ ██▒▒ ▓██░ ▒░▒███   ▓██  ▀█ ██▒░ ▓██▄   ▒███      ▒██░  ██▒░ ▓██▄    "${CL_MAG}
+	@echo -e ${CL_MAG}" ░██░▓██▒  ▐▌██▒░ ▓██▓ ░ ▒▓█  ▄ ▓██▒  ▐▌██▒  ▒   ██▒▒▓█  ▄    ▒██   ██░  ▒   ██▒ "${CL_MAG}
+	@echo -e ${CL_MAG}" ░██░▒██░   ▓██░  ▒██▒ ░ ░▒████▒▒██░   ▓██░▒██████▒▒░▒████▒   ░ ████▓▒░▒██████▒▒ "${CL_MAG}
+	@echo -e ${CL_MAG}" ░▓  ░ ▒░   ▒ ▒   ▒ ░░   ░░ ▒░ ░░ ▒░   ▒ ▒ ▒ ▒▓▒ ▒ ░░░ ▒░ ░   ░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░ "${CL_MAG}
+	@echo -e ${CL_MAG}"  ▒ ░░ ░░   ░ ▒░    ░     ░ ░  ░░ ░░   ░ ▒░░ ░▒  ░ ░ ░ ░  ░     ░ ▒ ▒░ ░ ░▒  ░ ░ "${CL_MAG}
+	@echo -e ${CL_MAG}"  ▒ ░   ░   ░ ░   ░         ░      ░   ░ ░ ░  ░  ░     ░      ░ ░ ░ ▒  ░  ░  ░   "${CL_MAG}
+	@echo -e ${CL_MAG}"  ░           ░             ░  ░         ░       ░     ░  ░       ░ ░        ░   "${CL_MAG}
+	@echo -e ${CL_MAG}""${CL_MAG}
+	@echo -e ${CL_MAG}"                 Build completed!! Flash that ROM and ENJOY!!                    "${CL_MAG}
+	@echo -e ${CL_MAG}"Package Complete: $(INTENSE_TARGET_PACKAGE)"${CL_MAG}
 
 # -----------------------------------------------------------------
 # The factory package
