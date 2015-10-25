@@ -21,6 +21,9 @@ Invoke ". build/envsetup.sh" from your shell to add the following functions to y
 - sepgrep: Greps on all local sepolicy files.
 - sgrep:   Greps on all local source files.
 - godir:   Go to the directory containing a file.
+- cmremote: Add git remote for CM Gerrit Review
+- cmgerrit: A Git wrapper that fetches/pushes patch from/to CM Gerrit Review
+- cmrebase: Rebase a Gerrit change and push it again
 - aospremote: Add git remote for matching AOSP repository
 - cafremote: Add git remote for matching CodeAurora repository.
 - mka:      Builds using SCHED_BATCH on all processors
@@ -28,6 +31,7 @@ Invoke ". build/envsetup.sh" from your shell to add the following functions to y
 - cmka:     Cleans and builds using mka.
 - repolastsync: Prints date and time of last repo sync.
 - reposync: Parallel repo sync using ionice and SCHED_BATCH
+- repopick: Utility to fetch changes from Gerrit.
 - installboot: Installs a boot.img to the connected device.
 - installrecovery: Installs a recovery.img to the connected device.
 
