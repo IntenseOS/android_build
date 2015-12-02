@@ -1135,8 +1135,8 @@ INTERNAL_SYSTEMIMAGE_FILES := $(filter $(TARGET_OUT)/%, \
     $(RECOVERY_PATCH_INSTALL))
 
 systemimage-changelog: $(INTERNAL_SYSTEMIMAGE_FILES)
-        @echo -e "Generating changelog!!!!!"
-        $(hide) APKCERTS=$(APKCERTS_FILE) ./vendor/intense/tools/changelog
+	@echo -e "Generating changelog!!!!!"
+	$(hide) APKCERTS=$(APKCERTS_FILE) ./vendor/intense/tools/changelog
 
 .PHONY: systemimage-changelog
 
