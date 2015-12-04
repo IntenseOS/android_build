@@ -734,10 +734,10 @@ ifneq ($(INTENSE_BUILD),)
 $(eval include vendor/intense/sepolicy/sepolicy.mk)
 
 # Include any vendor specific config.mk file
--include $(TOPDIR)vendor/intense/build/core/config.mk
+-include $(TOPDIR)vendor/*/build/core/config.mk
 
 # Include any vendor specific apicheck.mk file
--include $(TOPDIR)vendor/intense/build/core/apicheck.mk
+-include $(TOPDIR)vendor/*/build/core/apicheck.mk
 
 endif
 
