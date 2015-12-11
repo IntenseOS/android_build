@@ -1151,13 +1151,7 @@ INTERNAL_SYSTEMIMAGE_FILES := $(filter $(TARGET_OUT)/%, \
     $(RECOVERY_RESOURCE_ZIP) \
     $(RECOVERY_PATCH_INSTALL))
 
-systemimage-changelog: $(INTERNAL_SYSTEMIMAGE_FILES)
-	@echo -e "Generating changelog!!!!!"
-	$(hide) APKCERTS=$(APKCERTS_FILE) ./vendor/intense/tools/changelog
-
-.PHONY: systemimage-changelog
-
-FULL_SYSTEMIMAGE_DEPS := $(INTERNAL_SYSTEMIMAGE_FILES) $(INTERNAL_USERIMAGES_DEPS) systemimage-changelog
+FULL_SYSTEMIMAGE_DEPS := $(INTERNAL_SYSTEMIMAGE_FILES) $(INTERNAL_USERIMAGES_DEPS)
 # -----------------------------------------------------------------
 # installed file list
 # Depending on anything that $(BUILT_SYSTEMIMAGE) depends on.
