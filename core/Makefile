@@ -1930,7 +1930,9 @@ intense: otapackage
 	@echo -e ${CL_GRN}""${CL_GRN}
 	@echo -e ${CL_GRN}"                 Build completed!! Flash that ROM and ENJOY!!                    "${CL_GRN}
 	@echo -e ${CL_GRN}""${CL_GRN}
+	@echo -e ${CL_GRN}"══════════════════════════════════════════════════════════════════════════════════"${CL_GRN}
 	@echo -e ${CL_GRN}"Package Complete: $(INTENSE_TARGET_PACKAGE)"${CL_GRN}
+	@echo -e ${CL_GRN}"══════════════════════════════════════════════════════════════════════════════════"${CL_GRN}
 
 # -----------------------------------------------------------------
 # The factory package
