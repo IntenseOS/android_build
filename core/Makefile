@@ -1151,7 +1151,15 @@ INTERNAL_SYSTEMIMAGE_FILES := $(filter $(TARGET_OUT)/%, \
     $(RECOVERY_RESOURCE_ZIP) \
     $(RECOVERY_PATCH_INSTALL))
 
-FULL_SYSTEMIMAGE_DEPS := $(INTERNAL_SYSTEMIMAGE_FILES) $(INTERNAL_USERIMAGES_DEPS)
+
+systemimage-crusher: $(INTERNAL_SYSTEMIMAGE_FILES)
+	@echo -e "Optimizing PNGs to Shrink ROM Size!"
+	$(hide) APKCERTS=$(APKCERTS_FILE) ./build/tools/releasetools/pngcrusher
+
+.PHONY: systemimage-crusher
+
+FULL_SYSTEMIMAGE_DEPS := $(INTERNAL_SYSTEMIMAGE_FILES) $(INTERNAL_USERIMAGES_DEPS) systemimage-crusher
+
 # -----------------------------------------------------------------
 # installed file list
 # Depending on anything that $(BUILT_SYSTEMIMAGE) depends on.
@@ -1916,20 +1924,23 @@ otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 intense: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(INTENSE_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(INTENSE_TARGET_PACKAGE) > $(INTENSE_TARGET_PACKAGE).md5sum
-	@echo -e ${CL_MAG}""${CL_MAG}
-	@echo -e ""${CL_MAG}
-	@echo -e ${CL_MAG}" ██▓ ███▄    █ ▄▄▄█████▓▓█████  ███▄    █   ██████ ▓█████     ▒█████    ██████   "${CL_MAG}
-	@echo -e ${CL_MAG}" ▓██▒ ██ ▀█   █ ▓  ██▒ ▓▒▓█   ▀  ██ ▀█   █ ▒██    ▒ ▓█   ▀    ▒██▒  ██▒▒██    ▒  "${CL_MAG}
-	@echo -e ${CL_MAG}" ▒██▒▓██  ▀█ ██▒▒ ▓██░ ▒░▒███   ▓██  ▀█ ██▒░ ▓██▄   ▒███      ▒██░  ██▒░ ▓██▄    "${CL_MAG}
-	@echo -e ${CL_MAG}" ░██░▓██▒  ▐▌██▒░ ▓██▓ ░ ▒▓█  ▄ ▓██▒  ▐▌██▒  ▒   ██▒▒▓█  ▄    ▒██   ██░  ▒   ██▒ "${CL_MAG}
-	@echo -e ${CL_MAG}" ░██░▒██░   ▓██░  ▒██▒ ░ ░▒████▒▒██░   ▓██░▒██████▒▒░▒████▒   ░ ████▓▒░▒██████▒▒ "${CL_MAG}
-	@echo -e ${CL_MAG}" ░▓  ░ ▒░   ▒ ▒   ▒ ░░   ░░ ▒░ ░░ ▒░   ▒ ▒ ▒ ▒▓▒ ▒ ░░░ ▒░ ░   ░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░ "${CL_MAG}
-	@echo -e ${CL_MAG}"  ▒ ░░ ░░   ░ ▒░    ░     ░ ░  ░░ ░░   ░ ▒░░ ░▒  ░ ░ ░ ░  ░     ░ ▒ ▒░ ░ ░▒  ░ ░ "${CL_MAG}
-	@echo -e ${CL_MAG}"  ▒ ░   ░   ░ ░   ░         ░      ░   ░ ░ ░  ░  ░     ░      ░ ░ ░ ▒  ░  ░  ░   "${CL_MAG}
-	@echo -e ${CL_MAG}"  ░           ░             ░  ░         ░       ░     ░  ░       ░ ░        ░   "${CL_MAG}
-	@echo -e ${CL_MAG}""${CL_MAG}
-	@echo -e ${CL_MAG}"                 Build completed!! Flash that ROM and ENJOY!!                    "${CL_MAG}
-	@echo -e ${CL_MAG}"Package Complete: $(INTENSE_TARGET_PACKAGE)"${CL_MAG}
+	@echo -e ${CL_GRN}""${CL_GRN}
+	@echo -e ""${CL_GRN}
+	@echo -e ${CL_GRN}" ██▓ ███▄    █ ▄▄▄█████▓▓█████  ███▄    █   ██████ ▓█████     ▒█████    ██████   "${CL_GRN}
+	@echo -e ${CL_GRN}" ▓██▒ ██ ▀█   █ ▓  ██▒ ▓▒▓█   ▀  ██ ▀█   █ ▒██    ▒ ▓█   ▀    ▒██▒  ██▒▒██    ▒  "${CL_GRN}
+	@echo -e ${CL_GRN}" ▒██▒▓██  ▀█ ██▒▒ ▓██░ ▒░▒███   ▓██  ▀█ ██▒░ ▓██▄   ▒███      ▒██░  ██▒░ ▓██▄    "${CL_GRN}
+	@echo -e ${CL_GRN}" ░██░▓██▒  ▐▌██▒░ ▓██▓ ░ ▒▓█  ▄ ▓██▒  ▐▌██▒  ▒   ██▒▒▓█  ▄    ▒██   ██░  ▒   ██▒ "${CL_GRN}
+	@echo -e ${CL_GRN}" ░██░▒██░   ▓██░  ▒██▒ ░ ░▒████▒▒██░   ▓██░▒██████▒▒░▒████▒   ░ ████▓▒░▒██████▒▒ "${CL_GRN}
+	@echo -e ${CL_GRN}" ░▓  ░ ▒░   ▒ ▒   ▒ ░░   ░░ ▒░ ░░ ▒░   ▒ ▒ ▒ ▒▓▒ ▒ ░░░ ▒░ ░   ░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░ "${CL_GRN}
+	@echo -e ${CL_GRN}"  ▒ ░░ ░░   ░ ▒░    ░     ░ ░  ░░ ░░   ░ ▒░░ ░▒  ░ ░ ░ ░  ░     ░ ▒ ▒░ ░ ░▒  ░ ░ "${CL_GRN}
+	@echo -e ${CL_GRN}"  ▒ ░   ░   ░ ░   ░         ░      ░   ░ ░ ░  ░  ░     ░      ░ ░ ░ ▒  ░  ░  ░   "${CL_GRN}
+	@echo -e ${CL_GRN}"  ░           ░             ░  ░         ░       ░     ░  ░       ░ ░        ░   "${CL_GRN}
+	@echo -e ${CL_GRN}""${CL_GRN}
+	@echo -e ${CL_GRN}"                 Build completed!! Flash that ROM and ENJOY!!                    "${CL_GRN}
+	@echo -e ${CL_GRN}""${CL_GRN}
+	@echo -e ${CL_CYN}""${CL_CYN}
+	@echo -e ${CL_CYN}"Package Complete: $(INTENSE_TARGET_PACKAGE)"${CL_CYN}
+	@echo -e ${CL_CYN}""${CL_CYN}
 
 # -----------------------------------------------------------------
 # The factory package
