@@ -663,8 +663,11 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
     product = "%s (unified)"%(device);
     
   script.Print("* Release: %s"%(releasetype));
+  script.Print("");
   script.Print("* Build date: %s"%(builddate));
+  script.Print("");
   script.Print("* Device: %s"%(product));
+  script.Print("");
 
   if "selinux_fc" in OPTIONS.info_dict:
     WritePolicyConfig(OPTIONS.info_dict["selinux_fc"], output_zip)
