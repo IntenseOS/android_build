@@ -635,11 +635,15 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   if HasVendorPartition(input_zip):
     system_progress -= 0.1
 
+  script.Print("")
   script.Print("  _____       _                           ___  __  ")
   script.Print("  \_   \_ __ | |_ ___ _ __  ___  ___     /___\/ _\ ")
   script.Print("   / /\/ '_ \| __/ _ \ '_ \/ __|/ _ \   //  //\ \  ")
   script.Print("/\/ /_ | | | | ||  __/ | | \__ \  __/  / \_// _\ \ ")
   script.Print("\____/ |_| |_|\__\___|_| |_|___/\___|  \___/  \__/ ")
+  script.Print("")
+  script.Print("              **** ANDROID 6.0.1 ****              ")
+  script.Print("")
 
   script.AppendExtra("if is_mounted(\"/data\") then")
   script.ValidateSignatures("data")
