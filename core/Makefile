@@ -1926,7 +1926,7 @@ intense: otapackage
 	$(hide) $(MD5SUM) $(INTENSE_TARGET_PACKAGE) > $(INTENSE_TARGET_PACKAGE).md5sum
 	@echo -e ${CL_GRN}""${CL_GRN}
 	@echo -e ""${CL_GRN}
-	@echo -e ${CL_GRN}" ██▓ ███▄    █ ▄▄▄█████▓▓█████  ███▄    █   ██████ ▓█████     ▒█████    ██████   "${CL_GRN}
+	@echo -e ${CL_GRN}"  ██▓ ███▄    █ ▄▄▄█████▓▓█████  ███▄    █   ██████ ▓█████     ▒█████    ██████  "${CL_GRN}
 	@echo -e ${CL_GRN}" ▓██▒ ██ ▀█   █ ▓  ██▒ ▓▒▓█   ▀  ██ ▀█   █ ▒██    ▒ ▓█   ▀    ▒██▒  ██▒▒██    ▒  "${CL_GRN}
 	@echo -e ${CL_GRN}" ▒██▒▓██  ▀█ ██▒▒ ▓██░ ▒░▒███   ▓██  ▀█ ██▒░ ▓██▄   ▒███      ▒██░  ██▒░ ▓██▄    "${CL_GRN}
 	@echo -e ${CL_GRN}" ░██░▓██▒  ▐▌██▒░ ▓██▓ ░ ▒▓█  ▄ ▓██▒  ▐▌██▒  ▒   ██▒▒▓█  ▄    ▒██   ██░  ▒   ██▒ "${CL_GRN}
