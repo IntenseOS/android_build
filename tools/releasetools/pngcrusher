@@ -95,7 +95,7 @@ if [ "$(which zipalign)" = "" ];then
 fi
 
 # Notify
-echo -e $CL_GRN"--- Starting pngcrusher ---"$CL_RST
+echo -e $CL_YLW"--- Beating the SHIT outta PNG's now ---"$CL_YLW
 echo -e $CL_BLU"apkcerts.txt path: "$CL_RST"$APKCERTS"
 
 # Setup args
@@ -115,4 +115,4 @@ fi
 cd $OUT/system
 find framework/ app/ priv-app/ vendor/app/ -name \*.apk -print | $XARGS $ANDROID_BUILD_TOP/build/tools/releasetools/crush
 
-echo -e $CL_GRN"--- pngcrusher done ---"$CL_RST
+echo -e $CL_YLW"--- Done Crushing the Shit outta them ---"$CL_YLW
