@@ -27,6 +27,7 @@ try:
     # For python3
     import urllib.request
 except ImportError:
+    # For python2
     import imp
     import urllib2
     urllib = imp.new_module('urllib')
