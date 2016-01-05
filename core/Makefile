@@ -1938,9 +1938,12 @@ intense: otapackage
 	@echo -e ${CL_GRN}""${CL_GRN}
 	@echo -e ${CL_GRN}"                 Build completed!! Flash that ROM and ENJOY!!                    "${CL_GRN}
 	@echo -e ${CL_GRN}""${CL_GRN}
-	@echo -e ${CL_CYN}""${CL_CYN}
-	@echo -e ${CL_CYN}"Package Complete: $(INTENSE_TARGET_PACKAGE)"${CL_CYN}
-	@echo -e ${CL_CYN}""${CL_CYN}
+	@echo -e ${CL_YLW}"****************"${CL_YLW}
+	@echo -e ${CL_YLW}"ROM Size : `ls -lh $(INTENSE_TARGET_PACKAGE) | cut -d ' ' -f 5`"
+	@echo -e ${CL_YLW}"****************"${CL_YLW}
+	@echo -e ${CL_GRN}""${CL_GRN}
+	@echo -e ${CL_GRN}"Package Complete: $(INTENSE_TARGET_PACKAGE)"${CL_GRN}
+	@echo -e ${CL_GRN}""${CL_GRN}
 
 # -----------------------------------------------------------------
 # The factory package
