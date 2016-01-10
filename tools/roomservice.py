@@ -39,7 +39,7 @@ default_rem = "github"
 # set this to the default revision to use (branch/tag name)
 default_rev = "mm-6.0"
 # set this to the remote that you use for projects from your team repos
-# example fetch="https://github.com/omnirom"
+# example fetch="https://github.com/IntenseOS-Devices"
 default_team_rem = "github"
 # this shouldn't change unless google makes changes
 local_manifest_dir = ".repo/local_manifests"
@@ -86,6 +86,7 @@ def get_device_url(git_data):
 
     if device_url:
         return device_url
+        return "{}/{}".format(android_team, device_url)
     raise Exception("{} not found in {} Github, exiting "
                     "roomservice".format(device, android_team))
 
@@ -134,10 +135,10 @@ def check_dup_path(directory):
 
 # Use the indent function from http://stackoverflow.com/a/4590052
 def indent(elem, level=0):
-    i = ''.join(["\n", level*"  "])
+    i = ''.join(["\n", level*" "])
     if len(elem):
         if not elem.text or not elem.text.strip():
-            elem.text = ''.join([i, "  "])
+            elem.text = ''.join([i, " "])
         if not elem.tail or not elem.tail.strip():
             elem.tail = i
         for elem in elem:
@@ -197,7 +198,7 @@ def write_to_manifest(manifest):
 
     with open('/'.join([local_manifest_dir, "roomservice.xml"]), 'w') as f:
         f.write(raw_xml)
-    print("wrote the new roomservice manifest")
+    print("Wrote the new roomservice manifest")
 
 
 def parse_device_from_manifest(device):
@@ -220,7 +221,7 @@ def parse_device_from_folder(device):
     elif len(search) == 1:
         location = search[0]
     else:
-        print("you device can't be found in device sources..")
+        print("Your device was not found. Attempting to retrieve device repository from Intense-OS's Github..")
         location = parse_device_from_manifest(device)
     return location
 
@@ -293,8 +294,8 @@ def fetch_device(device):
     if not project is None:
         manifest = append_to_manifest(project)
         write_to_manifest(manifest)
-        print("syncing the device config")
-        os.system('repo sync -f --force-sync --no-clone-bundle %s' % device_dir)
+        print("Syncing the device config")
+        os.system('repo sync --force-sync --no-clone-bundle %s' % device_dir)
 
 
 if __name__ == '__main__':
