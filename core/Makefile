@@ -1238,6 +1238,11 @@ endef
 $(BUILT_SYSTEMIMAGE): $(FULL_SYSTEMIMAGE_DEPS) $(INSTALLED_FILES_FILE)
 	$(call build-systemimage-target,$@)
 
+ifndef I_WANT_A_QUAIL_STAR
+$(BUILT_SYSTEMIMAGE): checkapi
+$(BUILT_SYSTEMIMAGE): checkapi-cm
+endif
+
 INSTALLED_SYSTEMIMAGE := $(PRODUCT_OUT)/system.img
 SYSTEMIMAGE_SOURCE_DIR := $(TARGET_OUT)
 
@@ -1709,7 +1714,7 @@ ifdef BOARD_RAMDISK_OFFSET
 	$(hide) echo "$(BOARD_RAMDISK_OFFSET)" > $(zip_root)/RECOVERY/ramdisk_offset
 endif
 ifeq ($(strip $(BOARD_KERNEL_SEPARATED_DT)),true)
-	$(hide) echo "$(INSTALLED_DTIMAGE_TARGET)" > $(zip_root)/RECOVERY/dt_args
+	$(hide) $(ACP) $(INSTALLED_DTIMAGE_TARGET) $(zip_root)/RECOVERY/dt
 endif
 	@# Components of the boot image
 	$(hide) mkdir -p $(zip_root)/BOOT
@@ -1742,7 +1747,7 @@ ifdef BOARD_RAMDISK_OFFSET
 	$(hide) echo "$(BOARD_RAMDISK_OFFSET)" > $(zip_root)/BOOT/ramdisk_offset
 endif
 ifeq ($(strip $(BOARD_KERNEL_SEPARATED_DT)),true)
-	$(hide) echo "$(INSTALLED_DTIMAGE_TARGET)" > $(zip_root)/BOOT/dt_args
+	$(hide) $(ACP) $(INSTALLED_DTIMAGE_TARGET) $(zip_root)/BOOT/dt
 endif
 ifdef ZIP_SAVE_UBOOTIMG_ARGS
 	$(hide) echo "$(ZIP_SAVE_UBOOTIMG_ARGS)" > $(zip_root)/BOOT/ubootargs

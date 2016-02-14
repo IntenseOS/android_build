@@ -121,7 +121,6 @@ def iterate_manifests(check_all):
 def check_project_exists(url):
     for project in iterate_manifests(True):
         if project.get("name") == url:
-            return True
     return False
 
 
@@ -178,7 +177,6 @@ def create_manifest_remove(url):
     remove = ES.Element("remove-project", attrib={"name": url})
     return remove
 
-
 def append_to_manifest(project):
     try:
         lm = ES.parse('/'.join([local_manifest_dir, "roomservice.xml"]))
@@ -207,7 +205,6 @@ def parse_device_from_manifest(device):
         if name.startswith("android_device_") and name.endswith(device):
             return project.get('path')
     return None
-
 
 def parse_device_from_folder(device):
     search = []

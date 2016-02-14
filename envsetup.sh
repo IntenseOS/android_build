@@ -11,6 +11,7 @@ Invoke ". build/envsetup.sh" from your shell to add the following functions to y
            To limit the modules being built use the syntax: mmm dir/:target1,target2.
 - mma:     Builds all of the modules in the current directory, and their dependencies.
 - mmp:     Builds all of the modules in the current directory and pushes them to the device.
+- mmap:    Builds all of the modules in the current directory, and its dependencies, then pushes the package to the device.
 - mmmp:    Builds all of the modules in the supplied directories and pushes them to the device.
 - mmma:    Builds all of the modules in the supplied directories, and their dependencies.
 - mms:     Short circuit builder. Quickly re-build the kernel, rootfs, boot and system images
@@ -1897,6 +1898,19 @@ function repodiff() {
       'echo "$REPO_PATH ($REPO_REMOTE)"; git diff ${diffopts} 2>/dev/null ;'
 }
 
+# Return success if adb is up and not in recovery
+function _adb_connected {
+    {
+        if [[ "$(adb get-state)" == device &&
+              "$(adb shell test -e /sbin/recovery; echo $?)" == 0 ]]
+        then
+            return 0
+        fi
+    } 2>/dev/null
+
+    return 1
+};
+
 # Credit for color strip sed: http://goo.gl/BoIcm
 function dopush()
 {
@@ -1904,10 +1918,10 @@ function dopush()
     shift
 
     adb start-server # Prevent unexpected starting server message from adb get-state in the next line
-    if [ $(adb get-state) != device -a $(adb shell test -e /sbin/recovery 2> /dev/null; echo $?) != 0 ] ; then
+    if ! _adb_connected; then
         echo "No device is online. Waiting for one..."
         echo "Please connect USB and/or enable USB debugging"
-        until [ $(adb get-state) = device -o $(adb shell test -e /sbin/recovery 2> /dev/null; echo $?) = 0 ];do
+        until _adb_connected; do
             sleep 1
         done
         echo "Device Found."
@@ -2030,6 +2044,7 @@ EOF
 
 alias mmp='dopush mm'
 alias mmmp='dopush mmm'
+alias mmap='dopush mma'
 alias mkap='dopush mka'
 alias cmkap='dopush cmka'
 
